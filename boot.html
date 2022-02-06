@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./css/main.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+
+    <div class="left-menu">
+        <p>Menu Title</p>
+    </div>
+
+    <script>
+
+        $('.left-menu')
+
+    </script>
+
+    <div class="black-background">
+        <div class="white-background">
+            <p>로그인하세요</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email" id="email">
+                </div>
+                <p id="email-alert">이메일이 빈칸입니다.</p>
+                <div class="form-group">
+                    <input id="pwd" type="password" class="form-control" placeholder="Password">
+                </div>
+                <p id="pwd-alert">비밀번호가 빈칸입니다.</p>
+                <button id="submit" type="submit" class="btn btn-primary">전송</button>
+                <button class="btn btn-danger" id="close">닫기</button>
+            </form>
+            
+
+            <!-- <a id="close" class="btn btn-primary btn-lg" href="#" role="button">닫기</a> -->
+        </div>
+    </div>
+
+    <div class="nav-menu">
+        <h4>Shirts Studio</h4>
+        <p id="nav-button">Products</p>
+    </div>
+
+    <ul class="list-group nav-sub">
+        <li class="list-group-item">Outer</li>
+        <li class="list-group-item">Innerwear</li>
+        <li class="list-group-item">Shirts</li>
+    </ul>
+
+
+
+
+    <div class="jumbotron main-background">
+        <h1 class="display-4">Shirts Studio</h1>
+        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+            featured content or information.</p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <a id="login" class="btn btn-primary btn-lg" href="#" role="button">Log In</a>
+        <a id="show-menu" class="btn btn-danger btn-lg" href="#" role="button">Show Menu</a>
+    </div>
+
+    <h4 class="my-4 text-center">ShowCase</h4>
+
+    <div style="overflow: hidden; position: relative;">
+        <div class="slide-container">
+            <div class="slide-box">
+                <img src="./img/blue.png" >
+            </div>
+            <div class="slide-box">
+                <img src="./img/red.png">
+            </div>
+            <div class="slide-box">
+                <img src="./img/yellow.png">
+            </div>
+        </div>
+        <button class="slide-next">Next</button>
+        <button class="slide-before">Brfore</button>
+    </div>
+
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+
+    <div class="my-5"></div>
+
+
+
+
+
+
+    <script>
+
+        var cnt = 1;
+        //next 버튼 이벤트
+        $('.slide-next').click(function(){
+            if (cnt == 1){
+                $('.slide-container').css('transform', 'translateX(-100vw)');
+                cnt++;
+            }else if (cnt == 2){
+                $('.slide-container').css('transform', 'translateX(-200vw)');
+                cnt++;
+            }else if(cnt == 3){
+                $('.slide-container').css('transform', 'translateX(0vw)');
+                cnt = 1;
+            }
+        });
+        //before 버튼 이벤트
+        $('.slide-before').click(function(){
+            if (cnt == 3){
+                $('.slide-container').css('transform', 'translateX(-100vw)');
+                cnt--;
+            }else if (cnt == 2){
+                $('.slide-container').css('transform', 'translateX(0vw)');
+                cnt--;
+            }else if(cnt == 1){
+                $('.slide-container').css('transform', 'translateX(-200vw)');
+                cnt = 3;
+            }
+        });
+
+
+        //번호 버튼 이벤트
+        $('.slide-1').click(function(){
+            $('.slide-container').css('transform', 'translateX(0vw)');
+            cnt = 1;
+        });
+
+        $('.slide-2').click(function(){
+            $('.slide-container').css('transform', 'translateX(-100vw)');
+            cnt = 2;
+        });
+
+        $('.slide-3').click(function(){
+            $('.slide-container').css('transform', 'translateX(-200vw)');
+            cnt = 3;
+        });
+
+    </script>
+
+
+
+
+    <script>
+
+        //정규식
+
+        $('#login-form').on('submit', function(e) {
+            
+            var inputEmail = $('#email').val();
+            var inputPwd = $('#pwd').val();
+
+            //이메일 정규식
+            var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; 
+            //8자 이상 특수문자 및 대문자 포함 비번 정규식
+            var reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/; 
+
+            //이메일 정규식 조건문
+            if ( !regExp.test(inputEmail) ) {
+                e.preventDefault();
+                console.log('형식 오류');
+            }
+            if ($('#email').val() == '') {
+                $('#email-alert').show();
+            }
+            //비밀번호 정규식 조건문
+            if ( !reg.test(inputPwd) ) {
+                e.preventDefault();
+                console.log('비밀번호 규칙 위반!');
+            }
+            if ($('#pwd').val() == '') {
+                $('#pwd-alert').show();
+            }
+
+//            if ($('#email').val() == '') {
+//                $('#email-alert').show();
+//                e.preventDefault();
+//            }
+//
+//            if ($('#pwd').val() == '') {
+//                $('#pwd-alert').show();
+//                e.preventDefault();
+//            }
+        });
+
+
+        //사이드바 보이기
+        $('#show-menu').click(function(){
+            $('.left-menu').animate({marginLeft : '0px'});
+        });
+
+
+        //로그인창 보이기
+        $('#login').on('click', function () {
+            $('.black-background').css('transform', 'translateY(0px)');
+        });
+
+        //닫기버튼 이벤트
+        $('#close').on('click', function () {
+            $('.black-background').fadeOut();
+        });
+
+        //상단 메뉴 버튼 이벤트
+        $('#nav-button').click(function () {
+            $('.nav-sub').slideToggle();
+        });
+
+        
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>
